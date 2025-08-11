@@ -1,0 +1,42 @@
+<!-- templates/charts.html -->
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vizualizacija biljaka</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<a href="{{ url_for('home') }}"
+   style="background-color: #ccc; color: black; text-decoration:none; padding: 12px 20px; border-radius: 6px; display:inline-block; margin-top: 20px;"
+   onmouseover="this.style.backgroundColor='#bbb'"
+   onmouseout="this.style.backgroundColor='#ccc'">
+    ⬅ Početna
+</a>
+
+    <h2>Broj biljaka po vrsti</h2>
+    <canvas id="plantChart" width="400" height="200"></canvas>
+
+    <script>
+        const ctx = document.getElementById('plantChart').getContext('2d');
+        const plantChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ labels | safe }},
+                datasets: [{
+                    label: 'Broj biljaka',
+                    data: {{ data | safe }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

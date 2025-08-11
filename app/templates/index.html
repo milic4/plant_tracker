@@ -1,0 +1,33 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Care Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+    <h1>Moje biljke</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Vrsta</th>
+                <th>Svjetlo</th>
+                <th>Zalijevanje</th>
+                <th>Prihrana</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for biljka in plants %}
+            <tr>
+                <td>{{ biljka.naziv }}</td>
+                <td>{{ biljka.vrsta }}</td>
+                <td>{{ biljka.potrebe_za_svjetlom }}</td>
+                <td>{{ biljka.zadnje_zalijevanje or 'N/A' }}</td>
+                <td>{{ biljka.zadnja_prihrana or 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

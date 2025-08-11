@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalji biljke</title>
+    <style>
+        body {
+            background-color: #f0fdf4;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        h2 {
+            color: #2e7d32;
+        }
+        p {
+            margin: 8px 0;
+        }
+        a, button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        a:hover, button:hover {
+            background-color: #388e3c;
+        }
+        .delete-btn {
+            background-color: #e53935;
+        }
+        .delete-btn:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🌿 {{ plant.naziv }}</h2>
+        <p><strong>Vrsta:</strong> {{ plant.vrsta }}</p>
+        <p><strong>Svjetlo:</strong> {{ plant.potrebe_za_svjetlom }}</p>
+        <p><strong>Zadnje zalijevanje:</strong> {{ plant.zadnje_zalijevanje or "Nema podataka" }}</p>
+        <p><strong>Sljedeće zalijevanje:</strong> {{ plant.sljedece_zalijevanje or "Nema podataka" }}</p>
+        <p><strong>Zadnja prihrana:</strong> {{ plant.zadnja_prihrana or "Nema podataka" }}</p>
+        <p><strong>Sljedeća prihrana:</strong> {{ plant.sljedeca_prihrana or "Nema podataka" }}</p>
+        <p><strong>Bilješke:</strong> {{ plant.biljeske or "Nema bilješki" }}</p>
+
+        <a href="/edit/{{ plant.id }}"> Uredi biljku</a>
+
+        <form action="/delete/{{ plant.id }}" method="post" style="display:inline;">
+            <button class="delete-btn" type="submit">🗑️ Obriši biljku</button>
+        </form>
+    </div>
+</body>
+</html>

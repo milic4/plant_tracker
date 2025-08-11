@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Tracker - Početna</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tvoj stil -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body class="bg-success-subtle text-center">
+
+
+    <div class="container mt-5 p-4 bg-white rounded shadow">
+        <h1 class="text-success mb-3">🌿 Dobrodošli u Plant Tracker! 🌿</h1>
+        <p class="lead">Ovdje pratite zalijevanje i prihranu svojih biljaka.</p>
+
+        <a href="/add" class="btn btn-success mb-4">➕ Dodaj biljku</a>
+
+        <h2 class="mb-3">Moje biljke</h2>
+
+        {% if plants %}
+            {% for plant in plants %}
+                <p>🪴 {{ plant.naziv }}</p>
+            {% endfor %}
+
+            <a href="/plants" class="btn btn-outline-success mt-3"> Pogledaj sve biljke u tablici</a>
+        {% else %}
+            <p>Još nema biljaka. <a href="{{ url_for('add_plant') }}">Dodaj biljku</a> 🌱</p>
+        {% endif %}
+
+        <a href="/charts" class="btn btn-outline-primary mt-3"> Vizualizacije</a>
+    </div>
+
+</body>
+</html>

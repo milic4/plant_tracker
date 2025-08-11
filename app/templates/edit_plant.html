@@ -1,0 +1,74 @@
+<!-- templates/edit_plant.html -->
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Uredi biljku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff3e0;
+            padding: 30px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            box-shadow: 0 0 10px #ffcc80;
+        }
+        input, textarea {
+            width: 100%;
+            margin: 5px 0 15px;
+            padding: 10px;
+        }
+        button {
+            background-color: #fb8c00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ef6c00;
+        }
+    </style>
+</head>
+<body>
+    <h2>Uredi biljku</h2>
+    <form method="post" action="/edit/{{ plant.id }}">
+        <label>Naziv:</label>
+        <input type="text" name="naziv" value="{{ plant.naziv }}" required>
+
+        <label>Vrsta:</label>
+        <input type="text" name="vrsta" value="{{ plant.vrsta }}" required>
+
+        <label>Potrebe za svjetlom:</label>
+        <input type="text" name="potrebe_za_svjetlom" value="{{ plant.potrebe_za_svjetlom }}" required>
+
+        <label>Zadnje zalijevanje:</label>
+        <input type="datetime-local" name="zadnje_zalijevanje" value="{{ plant.zadnje_zalijevanje|default('', true) }}">
+
+        <label>Sljedeće zalijevanje:</label>
+        <input type="datetime-local" name="sljedece_zalijevanje" value="{{ plant.sljedece_zalijevanje|default('', true) }}">
+
+        <label>Zadnja prihrana:</label>
+        <input type="datetime-local" name="zadnja_prihrana" value="{{ plant.zadnja_prihrana|default('', true) }}">
+
+        <label>Sljedeća prihrana:</label>
+        <input type="datetime-local" name="sljedeca_prihrana" value="{{ plant.sljedeca_prihrana|default('', true) }}">
+
+        <label>Bilješke:</label>
+        <textarea name="biljeske" rows="4">{{ plant.biljeske }}</textarea>
+
+        <button type="submit">Spremi promjene</button>
+    </form>
+<a href="{{ url_for('home') }}"
+   style="background-color: #ccc; color: black; text-decoration:none; padding: 12px 20px; border-radius: 6px; display:inline-block; margin-top: 20px;"
+   onmouseover="this.style.backgroundColor='#bbb'"
+   onmouseout="this.style.backgroundColor='#ccc'">
+    ⬅ Početna
+</a>
+
+</body>
+</html>

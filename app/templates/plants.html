@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Popis biljaka</title>
+    <style>
+        body {
+            background-color: #e8f5e9;
+            font-family: sans-serif;
+            padding: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 0 10px #c8e6c9;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        h1 {
+            color: #388e3c;
+        }
+        a {
+            color: #d81b60;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Popis biljaka</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Naziv</th>
+            <th>Vrsta</th>
+            <th>Potrebe za svjetlom</th>
+            <th>Zadnje zalijevanje</th>
+            <th>Sljedeće zalijevanje</th>
+            <th>Zadnja prihrana</th>
+            <th>Sljedeća prihrana</th>
+            <th>Bilješke</th>
+        </tr>
+        {% for plant in plants %}
+        <tr>
+            <td>{{ plant.id }}</td>
+            <td><a href="{{ url_for('view_plant', id=plant.id) }}">{{ plant.naziv }}</a></td>
+            <td>{{ plant.vrsta }}</td>
+            <td>{{ plant.potrebe_za_svjetlom }}</td>
+            <td>{{ plant.zadnje_zalijevanje or '—' }}</td>
+            <td>{{ plant.sljedece_zalijevanje or '—' }}</td>
+            <td>{{ plant.zadnja_prihrana or '—' }}</td>
+            <td>{{ plant.sljedeca_prihrana or '—' }}</td>
+            <td>{{ plant.biljeske or '—' }}</td>
+            <td>
+    <form method="post" action="/delete/{{ plant.id }}" onsubmit="return confirm('Jesi sigurna da želiš obrisati ovu biljku?');">
+        <button type="submit" style="background-color: #a12789; color: white; border: none; padding: 5px 10px; cursor: pointer;">Obriši</button>
+    </form>
+</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+<a href="/add">+ Dodaj novu biljku</a>
+
+<a href="{{ url_for('home') }}"
+   style="background-color: #ccc; color: black; text-decoration:none; padding: 12px 20px; border-radius: 6px; display:inline-block; margin-top: 20px;"
+   onmouseover="this.style.backgroundColor='#bbb'"
+   onmouseout="this.style.backgroundColor='#ccc'">
+    ⬅ Početna
+</a>
+
+</body>
+</html>
