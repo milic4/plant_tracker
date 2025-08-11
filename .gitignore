@@ -1,0 +1,23 @@
+# virtual environments
+.venv/
+env/
+venv/
+
+# database files
+*.db
+*.sqlite
+
+# python / pycache
+__pycache__/
+*.pyc
+
+# IDE / editor
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# others
+*.log
